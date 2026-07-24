@@ -27,7 +27,8 @@ export class ApiClient {
 	}
 
 	async get(path: string) {
-		const fullPath = this.url + (this.trailingSlash ? path.replace(/\/?$/, "/") : path)
+		const fullPath = this.url + path + (this.trailingSlash ? "/" : "")
+
 		const cachedResult = CacheManager.get(fullPath)
 
 		if (cachedResult !== null) {
@@ -39,10 +40,10 @@ export class ApiClient {
 			throw new Error("third-party rate-limit reached")
 		}
 
-		console.log("URL:", fullPath);
-		console.log("CF_API_KEY exists:", process.env.CF_API_KEY !== undefined);
-		console.log("CF_API_KEY length:", process.env.CF_API_KEY?.length);
-		console.log("Header:", this.headers.get("x-api-key"));
+		console.log("URL:", fullPath)
+		console.log("CF_API_KEY exists:", process.env.CF_API_KEY !== undefined)
+		console.log("CF_API_KEY length:", process.env.CF_API_KEY?.length)
+		console.log("Header:", this.headers.get("x-api-key"))
 
 		const response = await fetch(fullPath, { headers: this.headers })
 
@@ -54,7 +55,7 @@ export class ApiClient {
 		}
 
 		if (response.status !== 200) {
-			console.log(await response.text());
+			console.log(await response.text())
 			throw new Error(`fetch failed: ${response.status} (${response.statusText})`)
 		}
 
