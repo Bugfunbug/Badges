@@ -9,7 +9,7 @@ const COLOR_REGEX = /^(?=[A-Fa-f0-9]*$)(?:.{3,4}|.{6}|.{8})$/
 const ICON_REGEX = /^[\w-]+$/
 const API_TARGETS: ApiTargetMap = {
 	modrinth: {
-		validation: /^[A-Za-z0-9]{8}$/,
+		validation: /^[A-Za-z0-9_-]+$/,
 		client: ApiClient.Modrinth,
 	},
 	curseforge: {
