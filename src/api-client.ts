@@ -17,7 +17,7 @@ export class ApiClient {
 		this.headers = new Headers({
 			"Content-Type": "application/json",
 			"Accept": "application/json",
-			"User-Agent": `${repository?.split(":")[1]}/${version} (${process.env.CONTACT_EMAIL || "unknown fork"})`,
+			"User-Agent": `Badges/${version} (github.com/Bugfunbug/Badges)`,
 			...headers,
 		})
 		this.rateLimitReset = null
