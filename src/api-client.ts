@@ -25,7 +25,7 @@ export class ApiClient {
 	}
 
 	async get(path: string) {
-    	const fullPath = this.url + path
+    	const fullPath = this.url + path.replace(/\/?$/, "/")
     	const cachedResult = CacheManager.get(fullPath)
 
     	if (cachedResult !== null) {
