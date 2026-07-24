@@ -46,7 +46,8 @@ export class ApiClient {
 		}
 
 		if (response.status !== 200) {
-			throw new Error(`fetch failed: ${response.status} (${response.statusText})`)
+    		console.log(await response.text());
+    		throw new Error(`fetch failed: ${response.status} (${response.statusText})`);
 		}
 
 		const json = await response.json()
