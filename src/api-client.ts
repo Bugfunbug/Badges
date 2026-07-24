@@ -37,6 +37,12 @@ export class ApiClient {
 			throw new Error("third-party rate-limit reached")
 		}
 
+		console.log("CF_API_KEY exists:", process.env.CF_API_KEY !== undefined);
+		console.log("CF_API_KEY length:", process.env.CF_API_KEY?.length);
+		console.log("Header:", this.headers.get("x-api-key"));
+
+		const response = await fetch(fullPath, { headers: this.headers });
+
 		const response = await fetch(fullPath, { headers: this.headers })
 		this.rateLimitReset = Date.now() + Number(response.headers.get("X-Ratelimit-Reset")) * 1000
 		this.rateLimitRemaining = Number(response.headers.get("X-Ratelimit-Remaining"))
